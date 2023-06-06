@@ -38,7 +38,7 @@ the `connect()` function from the `mongoose` module. It also checks if the conne
 or local server by checking if the `MongoURL` property includes the string "mongodb+srv". Finally,
 it calls the `listen()` method to listen for events related to the database connection. */
   // method to connect to the database
-  connect() {
+  async connect() {
     connect(this.MongoURL); // connect to the database
     this.MongoURL.includes("mongodb+srv")
       ? (this.ConnectionState = "Cloud")
