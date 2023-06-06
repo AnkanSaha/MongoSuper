@@ -1,7 +1,7 @@
 {
-  "name": "mongoose-connect",
-  "version": "1.0.2",
-  "description": "Mongoose",
+  "name": "mongo-always",
+  "version": "1.0.4",
+  "description": "mongo-always is a simple package that helps you to connect to your MongoDB database with Mongoose. It also helps you to keep your connection alive.",
   "main": "./lib/Start.js",
   "types":"./lib/Start.d.ts",
   "scripts": {
@@ -11,12 +11,28 @@
   },
   "repository": {
     "type": "git",
-    "url": "git"
+    "url": "https://github.com/AnkanSaha/mongo-always.git"
   },
   "keywords": [
-    "Mongoose"
+    "Mongoose",
+    "MongoDB",
+    "Mongo",
+    "Database",
+    "Connect",
+    "Connection",
+    "Mongoose-Connect",
+    "Mongoose-Connection",
+    "Mongoose-Connect-Connection",
+    "Mongoose-Connect-Connection-Keep-Alive",
+    "Mongoose-Connect-Connection-Keep-Alive-Always",
+    "Mongoose-Connect-Connection-Keep-Alive-Always-Alive"
   ],
   "author": "Ankan Saha",
+  "displayName": "mongo-always",
+  "funding": {
+    "type": "git",
+    "url": "https://github.com/sponsors/AnkanSaha"
+  },
   "license": "MIT",
   "dependencies": {
     "mongoose": "^7.2.2"
