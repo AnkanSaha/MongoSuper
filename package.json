@@ -1,0 +1,24 @@
+{
+  "name": "mongoose-connect",
+  "version": "1.0.2",
+  "description": "Mongoose",
+  "main": "./lib/Start.js",
+  "types":"./lib/Start.d.ts",
+  "scripts": {
+    "test": "npm test",
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git"
+  },
+  "keywords": [
+    "Mongoose"
+  ],
+  "author": "Ankan Saha",
+  "license": "MIT",
+  "dependencies": {
+    "mongoose": "^7.2.2"
+  }
+}
