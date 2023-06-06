@@ -39,7 +39,7 @@ or local server by checking if the `MongoURL` property includes the string "mong
 it calls the `listen()` method to listen for events related to the database connection. */
   // method to connect to the database
   async connect() {
-    await connect(this.MongoURL); // connect to the database
+    connect(this.MongoURL); // connect to the database
     this.MongoURL.includes("mongodb+srv")
       ? (this.ConnectionState = "Cloud")
       : "Local"; // check if the connection is to cloud or local
