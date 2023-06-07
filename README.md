@@ -20,7 +20,9 @@ const Connector = new mongoAlways.Mongo('MongoDB_URL', 'Log: true/false'); // Lo
 ## Methods
 ```javascript
 
-Connector.connect() // Connects to MongoDB
+Connector.SingleConnect() // Connects to MongoDB once and you can disconnect using Connector.disconnect()
+Connector.alwaysConnect() // Connects to MongoDB and automatically reconnects if disconnected & you can't disconnect
+Connector.disconnect() // Disconnects from MongoDB if connected whenever you want (Only works with SingleConnect())
 
 ```
 
