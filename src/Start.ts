@@ -42,7 +42,7 @@ the `connect()` function from the `mongoose` module. It also checks if the conne
 or local server by checking if the `MongoURL` property includes the string "mongodb+srv". Finally,
 it calls the `listen()` method to listen for events related to the database connection. */
   // method to connect to the database
-  async SingleConnect() {
+  public async SingleConnect() {
     this.Connect(this.MongoURL); // connect to the database
     this.MongoURL.includes("mongodb+srv")
       ? (this.ConnectionState = "Cloud")
@@ -54,9 +54,8 @@ it calls the `listen()` method to listen for events related to the database conn
         )
       : null;
   } // end of SingleConnect method
-
   // method to connect to the database and listen for events
-  async alwaysConnect(): Promise<void> {
+  public async alwaysConnect(): Promise<void> {
     this.Connect(this.MongoURL); // connect to the database
     this.MongoURL.includes("mongodb+srv")
       ? (this.ConnectionState = "Cloud")
@@ -106,7 +105,7 @@ it calls the `listen()` method to listen for events related to the database conn
   } // end of listen method
 
   // method to disconnect from the database
-  async disconnect(): Promise<void> {
+  public async disconnect(): Promise<void> {
     this.connection.close(); // disconnect from the database
 
     this.Log === true

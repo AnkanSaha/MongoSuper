@@ -7,7 +7,11 @@
   "scripts": {
     "test": "npm test",
     "build": "tsc",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "publishconfig": {
+      "registry": "https://npm.pkg.github.com/AnkanSaha",
+      "access": "public"
+    }
   },
   "repository": {
     "type": "git",
