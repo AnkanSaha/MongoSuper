@@ -1,0 +1,18 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended"],
+  "jsRules": {
+    "no-console": true,
+    "no-debugger": true,
+    "no-var-keyword": true,
+    "no-duplicate-variable": true,
+    "no-require-imports": true
+  },
+  "rules": {
+    "no-console": false,
+    "no-debugger": true,
+    "no-var-keyword": true,
+    "no-duplicate-variable": true
+  },
+  "rulesDirectory": []
+}
