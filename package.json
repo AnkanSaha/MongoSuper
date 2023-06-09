@@ -1,21 +1,20 @@
 {
   "name": "mongo-always",
-  "version": "2.3.7",
+  "version": "2.3.8",
   "description": "mongo-always is a simple package that helps you to connect to your MongoDB database with Mongoose. It also helps you to keep your connection alive.",
   "main": "./lib/Start.js",
   "types":"./lib/Start.d.ts",
   "scripts": {
     "test": "npm test",
-    "build": "tsc",
+    "build": "tslint --project tsconfig.json --config tslint.json --fix && tsc",
     "prepare": "npm run build",
-    "publishconfig": {
-      "registry": "https://npm.pkg.github.com/AnkanSaha",
-      "access": "public"
-    }
+    "lint": "tslint --project tsconfig.json --config tslint.json --fix"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/AnkanSaha/mongo-always.git"
+    "url": "https://github.com/AnkanSaha/mongo-always.git",
+    "directory": "lib",
+    "branch": "main"
   },
   "keywords": [
     "Mongoose",
@@ -40,5 +39,63 @@
   "license": "MIT",
   "dependencies": {
     "mongoose": "^7.2.2"
-  }
+  },
+  "readme": "README.md",
+  "badges": [
+    {
+      "name": "npm",
+      "description": "npm package version",
+      "url": "https://img.shields.io/npm/v/mongo-always.svg"
+    },
+    {
+      "name": "npm",
+      "description": "npm downloads",
+      "url": "https://img.shields.io/npm/dm/mongo-always.svg"
+    },
+    {
+      "name": "GitHub issues",
+      "description": "GitHub issues",
+      "url": "https://img.shields.io/github/issues/AnkanSaha/mongo-always.svg"
+    },
+    {
+      "name": "GitHub forks",
+      "description": "GitHub forks",
+      "url": "https://img.shields.io/github/forks/AnkanSaha/mongo-always.svg"
+    },
+    {
+      "name": "GitHub stars",
+      "description": "GitHub stars",
+      "url": "https://img.shields.io/github/stars/AnkanSaha/mongo-always.svg"
+    },
+    {
+      "name": "GitHub license",
+      "description": "GitHub license",
+      "url": "https://img.shields.io/github/license/AnkanSaha/mongo-always.svg"
+    },
+    {
+      "name": "GitHub watchers",
+      "description": "GitHub watchers",
+      "url": "https://img.shields.io/github/watchers/AnkanSaha/mongo-always.svg"
+    },
+    {
+      "name": "GitHub contributors",
+      "description": "GitHub contributors",
+      "url": "https://img.shields.io/github/contributors/AnkanSaha/mongo-always.svg"
+    },
+    {
+      "name": "GitHub last commit",
+      "description": "GitHub last commit",
+      "url": "https://img.shields.io/github/last-commit/AnkanSaha/mongo-always.svg"
+    },
+    {
+      "name": "GitHub pull requests",
+      "description": "GitHub pull requests",
+      "url": "https://img.shields.io/github/issues-pr/AnkanSaha/mongo-always.svg"
+    },
+    {
+      "name": "GitHub closed pull requests",
+      "description": "GitHub closed pull requests",
+      "url": "https://img.shields.io/github/issues-pr-closed/AnkanSaha/mongo-always.svg"
+    }
+  ]
 }

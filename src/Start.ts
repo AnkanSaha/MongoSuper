@@ -14,7 +14,7 @@ export class Mongo {
   private Log: bool; // boolean value to check if the logging is enabled or not
   private ConnectionState: str; // string value to check if the connection is to cloud or local
   private connection: typeof connection; // mongoose connection type
-  private Connect: (MongoURL:str) => Promise<void>; // function to connect to the database
+  private Connect: (MongoURL: str) => Promise<void>; // function to connect to the database
 
   /**
    * This is a constructor function that initializes properties for a MongoDB connection, including
@@ -28,7 +28,7 @@ export class Mongo {
    */
   constructor(
     MongoURL: str = "mongodb://localhost:27017/test", // default value is 'mongodb://localhost:27017/test'
-    Log: bool = true, // default value is true
+    Log: bool = true // default value is true
   ) {
     this.MongoURL = MongoURL; // assign the MongoURL property
     this.Log = Log; // assign the Log property
@@ -43,64 +43,70 @@ or local server by checking if the `MongoURL` property includes the string "mong
 it calls the `listen()` method to listen for events related to the database connection. */
   // method to connect to the database
   public async SingleConnect() {
-    this.Connect(this.MongoURL); // connect to the database
-    this.MongoURL.includes("mongodb+srv")
-      ? (this.ConnectionState = "Cloud")
-      : "Local"; // check if the connection is to cloud or local
+    await this.Connect(this.MongoURL); // connect to the database
+    if (this.MongoURL.includes("mongodb+srv")) {
+      this.ConnectionState = "Cloud";
+    } else {
+      this.ConnectionState = "Local";
+    } // check if the connection is to cloud or local
 
-      this.Log === true
-      ? console.log(
-          `MongoDB connected successfully with ${this.ConnectionState} Server`
-        )
-      : null;
+    if (this.Log === true) {
+      console.log(
+        `MongoDB connected successfully with ${this.ConnectionState} Server`
+      );
+    } // log the connection status if logging is enabled
   } // end of SingleConnect method
   // method to connect to the database and listen for events
   public async alwaysConnect(): Promise<void> {
-    this.Connect(this.MongoURL); // connect to the database
-    this.MongoURL.includes("mongodb+srv")
-      ? (this.ConnectionState = "Cloud")
-      : "Local"; // check if the connection is to cloud or local
-      //  listen for events
+    await this.Connect(this.MongoURL); // connect to the database
+    if (this.MongoURL.includes("mongodb+srv")) {
+      this.ConnectionState = "Cloud";
+    } else {
+      this.ConnectionState = "Local";
+    } // check if the connection is to cloud or local
+
+    //  listen for events
     this.listen(); // listen for events
   } // end of alwaysConnect method
-
 
   /* The `private listen()` method is a method of the `Mongo` class that listens for events related to
    the MongoDB database connection. It uses the `connection.on()` method from the `mongoose` module
    to listen for three events: `connected`, `error`, and `disconnected`. */
   private listen() {
     this.connection.on("connected", async (): Promise<void> => {
-      this.Log === true
-        ? console.log(
-            `MongoDB connected successfully with ${this.ConnectionState} Server`
-          )
-        : null;
+      if (this.Log === true) {
+        console.log(
+          `MongoDB connected successfully with ${this.ConnectionState} Server`
+        );
+      } // log the connection status if logging is enabled
     }); // listen for connected event
 
     this.connection.on("error", async (): Promise<void> => {
-      this.Log === true
-        ? console.log(" Error: MongoDB connection failed")
-        : null;
+      if (this.Log === true) {
+        console.log(" Error: MongoDB connection failed");
+      } // log the connection status if logging is enabled
+
       await connect(this.MongoURL); // connect to the database
-      this.Log === true
-        ? console.log(
-            `MongoDB reconnected successfully with ${this.ConnectionState} Server`
-          )
-        : null;
+      if (this.Log === true) {
+        console.log(
+          `MongoDB reconnected successfully with ${this.ConnectionState} Server`
+        );
+      } // log the connection status if logging is enabled
     });
     this.connection.on("disconnected", async (): Promise<void> => {
       // check if the connection is to cloud or local
-        this.Log === true
-          ? console.log(
-              `MongoDB disconnected with ${this.ConnectionState} Server and trying to reconnect`
-            )
-          : null;
-        await connect(this.MongoURL); // connect to the database
-        this.Log === true
-          ? console.log(
-              `MongoDB reconnected successfully with ${this.ConnectionState} Server`
-            )
-          : null;
+      if (this.Log === true) {
+        console.log(
+          `MongoDB disconnected with ${this.ConnectionState} Server and trying to reconnect`
+        );
+      } // log the connection status if logging is enabled
+
+      await connect(this.MongoURL); // connect to the database
+      if (this.Log === true) {
+        console.log(
+          `MongoDB reconnected successfully with ${this.ConnectionState} Server`
+        );
+      } // log the connection status if logging is enabled
     });
   } // end of listen method
 
@@ -108,10 +114,10 @@ it calls the `listen()` method to listen for events related to the database conn
   public async disconnect(): Promise<void> {
     this.connection.close(); // disconnect from the database
 
-    this.Log === true
-    ? console.log(
+    if (this.Log) {
+      console.log(
         `MongoDB Disconnected successfully with ${this.ConnectionState} Server`
-      )
-    : null;
+      );
+    } // log the connection status if logging is enabled
   } // end of disconnect method
 } // end of alwaysRun class
