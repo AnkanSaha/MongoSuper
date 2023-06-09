@@ -10,12 +10,6 @@
     "prepare": "npm run build",
     "lint": "tslint --project tsconfig.json --config tslint.json --fix"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/AnkanSaha/mongo-always.git",
-    "directory": "lib",
-    "branch": "main"
-  },
   "keywords": [
     "Mongoose",
     "MongoDB",
