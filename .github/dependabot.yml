@@ -8,4 +8,8 @@ updates:
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
-      interval: "weekly"
+      interval: "daily" # Check for updates daily
+      pull-request:
+        limit: 10 # Limit to 10 open PRs at any time
+        labels:
+          - "dependencies Update" # Apply labels to PRs for easier discovery
