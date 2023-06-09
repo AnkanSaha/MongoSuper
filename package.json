@@ -5,8 +5,8 @@
   "main": "./lib/Start.js",
   "types": "./lib/Start.d.ts",
   "scripts": {
-    "test": "npm test",
-    "build": "tslint --project tsconfig.json --config tslint.json --fix && tsc",
+    "test": "npm run lint",
+    "build": "npm test && tsc",
     "prepare": "npm run build",
     "lint": "tslint --project tsconfig.json --config tslint.json --fix"
   },
