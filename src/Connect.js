@@ -5,4 +5,4 @@ export default async function connectDB(MongoURL) {
         useNewUrlParser: true,
         useUnifiedTopology: true
     }); // connect to the database
-}; // create a function to connect to the database
+} // create a function to connect to the database
