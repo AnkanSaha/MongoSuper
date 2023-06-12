@@ -16,7 +16,7 @@ type str = string;
  * @returns If `CollectionName` is `undefined`, then `undefined` is being returned. Otherwise, a model
  * is being returned based on the `DataSchema` and `CollectionName`.
  */
-export default function name(DataSchema: globe, CollectionName?: str) : undefined | globe {
+export default function CreateModel(DataSchema: globe, CollectionName?: str) : undefined | globe {
     if (CollectionName === undefined) {
         return undefined;
     } else {
