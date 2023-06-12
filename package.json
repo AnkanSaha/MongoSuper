@@ -1,7 +1,7 @@
 {
-  "name": "mongo-always",
-  "version": "2.4.0",
-  "description": "mongo-always is a simple package that helps you to connect to your MongoDB database with Mongoose. It also helps you to keep your connection alive.",
+  "name": "mongoland",
+  "version": "3.5.2",
+  "description": "mongoland is a superset of mongoose. It is a wrapper around mongoose. It manage your mongoose connection and keep it alive always. It also provide you some extra features like CRUD operations, etc.",
   "main": "./lib/Ts/Connection/Connection.js",
   "types": "./lib/Ts/Connection/Connection.d.ts",
   "scripts": {
@@ -22,10 +22,13 @@
     "Mongoose-Connect-Connection",
     "Mongoose-Connect-Connection-Keep-Alive",
     "Mongoose-Connect-Connection-Keep-Alive-Always",
-    "Mongoose-Connect-Connection-Keep-Alive-Always-Alive"
+    "Mongoose-Connect-Connection-Keep-Alive-Always-Alive",
+    "mongoland",
+    "Crud",
+    "CRUD"
   ],
   "author": "Ankan Saha",
-  "displayName": "mongo-always",
+  "displayName": "mongoland",
   "funding": {
     "type": "git",
     "url": "https://github.com/sponsors/AnkanSaha"

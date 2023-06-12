@@ -9,6 +9,7 @@ import { Find } from "../../Js/python/Read"; // import the Find function from th
 type str = string;
 type bool = boolean;
 type globe = any;
+type int = number;
 
 
 //  class to run on start/* The above class is a TypeScript implementation of a MongoDB connection
@@ -59,6 +60,7 @@ or local server by checking if the `MongoURL` property includes the string "mong
 it calls the `listen()` method to listen for events related to the database connection. */
     // method to connect to the database
     public async Connect(): Promise<void> {
+       try{
         await this.InstantConnect(this.MongoURL); // connect to the database
         if (this.MongoURL.includes("mongodb+srv")) {
             this.ConnectionState = "Cloud";
@@ -70,6 +72,10 @@ it calls the `listen()` method to listen for events related to the database conn
         if (this.NeverDisconnect === true) {
             this.listen(); // listen for events related to the database connection
         } // check if this is a never disconnect connection
+       }
+       catch{
+            console.log("Error while connecting to the database");
+       }
     } // end of SingleConnect method
 
 
@@ -99,6 +105,7 @@ it calls the `listen()` method to listen for events related to the database conn
 
     // method to disconnect from the database
     public async disconnect(): Promise<void> {
+       try{
         if (this.NeverDisconnect === false) {
             console.log(
                 "This is not a never disconnect connection, to disconnect use set NeverDisconnect to false"
@@ -109,22 +116,40 @@ it calls the `listen()` method to listen for events related to the database conn
             this.connection.close(); // disconnect from the database
                 console.log(`MongoDB Disconnected successfully with ${this.ConnectionState} Server`);
         }
+       }
+        catch{
+            console.log("Error while disconnecting from the database");
+         }
     } // end of disconnect method
 
 
 
 
     // method to find a document in the database
-    public async find(Filter : globe[] = []): Promise<globe[]> {
-        const result : globe[] = await Find(Filter, this.models); // find the document in the database
-        return result; // return the result
+    public async find(Filter : globe[] = [], limit?: int): Promise<globe[]> {
+        try{
+            return limit === undefined ? await Find(Filter, this.models) : await Find(Filter, this.models, limit); // find the document in the database
+        }
+        catch{
+            console.log("Error while finding the document");
+            return [];
+        }
     } // end of find method
 
     // method to findAndCount a document in the database
     public async findAndCount(Filter : globe[] = []): Promise<globe> {
-        return {
-            count: Array.from(await this.find(Filter)).length, // find the document in the database
-            Data: await this.find(Filter) // find the document in the database
-        };
+        try{
+            return {
+                count: Array.from(await this.find(Filter)).length, // find the document in the database
+                Data: await this.find(Filter) // find the document in the database
+            };
+        }
+        catch{
+            console.log("Error while finding the document");
+            return {
+                count: 0,
+                Data: []
+            };
+        }
     }
 } // end of alwaysRun class
