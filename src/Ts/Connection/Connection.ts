@@ -1,6 +1,7 @@
 import { connect, connection } from "mongoose"; // import the mongoose module
 import connectDB from "../../Js/Connection/ConnectMongo"; // import the Connect function from the Connect.js file
 import CreateModel from '../Model/CreateModel'; // import the Create function from the CreateModel.ts file
+import CreateSchema from "../Schema/CreateSchema"; // import the Create function from the CreateSchema.ts file
 
 // CRUD methods
 import { Find } from "../../Js/python/Read"; // import the Find function from the Read.js file
@@ -49,7 +50,7 @@ export class Mongo {
         this.ConnectionState = "Local"; // assign the ConnectionState property
         this.connection = connection; // assign the connection property
         this.InstantConnect = connectDB; // assign the Connect property
-        this.models = CreateModel(this.Schema, this.CollectionName); // assign the models property
+        this.models = CreateModel(CreateSchema(this.Schema), this.CollectionName); // assign the models property
     } // end of constructor
 
 
