@@ -2,8 +2,8 @@
   "name": "mongo-always",
   "version": "2.4.0",
   "description": "mongo-always is a simple package that helps you to connect to your MongoDB database with Mongoose. It also helps you to keep your connection alive.",
-  "main": "./lib/start/Start.js",
-  "types": "./lib/start/Start.d.ts",
+  "main": "./lib/Ts/Connection/Connection.js",
+  "types": "./lib/Ts/Connection/Connection.d.ts",
   "scripts": {
     "test": "npm run lint",
     "build": "npm test && tsc",

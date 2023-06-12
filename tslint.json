@@ -2,7 +2,7 @@
   "defaultSeverity": "error",
   "extends": ["tslint:recommended"],
   "jsRules": {
-    "no-console": true,
+    "no-console": false,
     "no-debugger": true,
     "no-var-keyword": true,
     "no-duplicate-variable": true,
