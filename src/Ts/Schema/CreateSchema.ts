@@ -2,7 +2,6 @@ import { Schema } from "mongoose"; // Import mongoose types
 
 type globe = any;
 
-
 /**
  * This function creates a new schema object based on the provided data, and returns it or undefined if
  * there was an error.
@@ -12,12 +11,16 @@ type globe = any;
  * @returns The function `CreateSchema` is returning either an instance of the `Schema` class created
  * with the `Data` parameter, or `undefined` if an error occurs during the creation of the schema.
  */
-export default function CreateSchema(Data:globe) : undefined | globe {
-    try{
-        return new Schema(Data);
-    }
-    catch(err){
+export default function CreateSchema(Data: globe): undefined | globe {
+    try {
+        if (Data === undefined) {
+            console.log("Schema is undefined");
+            return;
+        } else {
+            return new Schema(Data);
+        }
+    } catch (err) {
         console.log(err);
         return undefined;
     }
-}; // end of function
+} // end of function

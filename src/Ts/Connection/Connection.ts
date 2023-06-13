@@ -5,7 +5,7 @@ import CreateSchema from "../Schema/CreateSchema"; // import the Create function
 
 // CRUD methods
 import { Find } from "../../Js/python/Read"; // import the Find function from the Read.js file
-
+import { Create } from "../../Js/python/Create"; // import the Create function from the Create.js file
 // global types
 type str = string;
 type bool = boolean;
@@ -60,6 +60,11 @@ the `connect()` function from the `mongoose` module. It also checks if the conne
 or local server by checking if the `MongoURL` property includes the string "mongodb+srv". Finally,
 it calls the `listen()` method to listen for events related to the database connection. */
     // method to connect to the database
+/**
+ * This function connects to a MongoDB database and checks if the connection is to a cloud or local
+ * server, and listens for events related to the database connection if it is a never disconnect
+ * connection.
+ */
     public async Connect(): Promise<void> {
        try{
         await this.InstantConnect(this.MongoURL); // connect to the database
@@ -84,6 +89,10 @@ it calls the `listen()` method to listen for events related to the database conn
     /* The `private listen()` method is a method of the `Mongo` class that listens for events related to
    the MongoDB database connection. It uses the `connection.on()` method from the `mongoose` module
    to listen for three events: `connected`, `error`, and `disconnected`. */
+/**
+ * This function listens for connection events and handles errors and disconnections for a MongoDB
+ * database.
+ */
     private listen() {
         this.connection.on("connected", async (): Promise<void> => {
                 console.log(`MongoDB connected successfully with ${this.ConnectionState} Server`);
@@ -105,6 +114,10 @@ it calls the `listen()` method to listen for events related to the database conn
 
 
     // method to disconnect from the database
+/**
+ * This function disconnects from a MongoDB database and logs the disconnection status.
+ * @returns A Promise that resolves to void (i.e., nothing).
+ */
     public async disconnect(): Promise<void> {
        try{
         if (this.NeverDisconnect === false) {
@@ -127,9 +140,20 @@ it calls the `listen()` method to listen for events related to the database conn
 
 
     // method to find a document in the database
+/**
+ * This is a TypeScript function that finds documents in a database based on a given filter and limit.
+ * @param {globe[]} Filter - Filter is an array of objects that contains the search criteria for the
+ * documents to be found in the database. Each object in the array represents a search condition for a
+ * specific field in the document.
+ * @param {int} [limit] - The `limit` parameter is an optional integer value that specifies the maximum
+ * number of documents to be returned by the `find` method. If not provided, all matching documents
+ * will be returned.
+ * @returns The `find` method is returning a Promise that resolves to an array of `globe` objects. If
+ * there is an error while finding the document, an empty array is returned.
+ */
     public async find(Filter : globe[] = [], limit?: int): Promise<globe[]> {
         try{
-            return limit === undefined ? await Find(Filter, this.models) : await Find(Filter, this.models, limit); // find the document in the database
+            return await Find(Filter, this.models, limit); // find the document in the database
         }
         catch{
             console.log("Error while finding the document");
@@ -138,11 +162,22 @@ it calls the `listen()` method to listen for events related to the database conn
     } // end of find method
 
     // method to findAndCount a document in the database
-    public async findAndCount(Filter : globe[] = []): Promise<globe> {
+/**
+ * This function finds and counts documents in a database based on a given filter and limit.
+ * @param {globe[]} Filter - An array of objects that will be used to filter the documents in the
+ * database. Each object in the array represents a filter condition.
+ * @param {int} [limit] - The limit parameter is an optional integer that specifies the maximum number
+ * of documents to return in the result set. If not provided, all matching documents will be returned.
+ * @returns This function returns an object with two properties: "count" and "Data". "count" is the
+ * number of documents found in the database that match the given filter and limit (if any). "Data" is
+ * an array of documents that match the given filter and limit (if any). If there is an error while
+ * finding the document, it returns an object with "count" set to 0
+ */
+    public async findAndCount(Filter : globe[] = [], limit?: int): Promise<globe> {
         try{
             return {
-                count: Array.from(await this.find(Filter)).length, // find the document in the database
-                Data: await this.find(Filter) // find the document in the database
+                count: Array.from(await this.find(Filter, limit)).length, // find the document in the database
+                Data: await this.find(Filter, limit) // find the document in the database
             };
         }
         catch{
@@ -153,4 +188,28 @@ it calls the `listen()` method to listen for events related to the database conn
             };
         }
     }
+
+    // method to create a document in the database
+/**
+ * This is a TypeScript function that creates a document in a database and returns an object with a
+ * count and data array, or logs an error message if there is an issue.
+ * @param {globe} Data - It is a parameter of type "globe" that is being passed to the "create" method.
+ * It is likely an object that contains data to be stored in a database.
+ * @returns The `create` method is returning a Promise that resolves to a `globe` object. If the
+ * `Create` function call is successful, it will return the created document from the database. If
+ * there is an error, the method will catch the error and return a `globe` object with `NewCount` set
+ * to 0 and an empty array for `NewData`.
+ */
+    public async create(Data: globe): Promise<globe> {
+        try{
+            return await Create(Data, this.models); // create the document in the database
+        }
+        catch{
+            console.log("Error while creating the document");
+            return {
+                NewCount:0,
+                NewData:[]
+            };
+        }
+    } // end of create method
 } // end of alwaysRun class
