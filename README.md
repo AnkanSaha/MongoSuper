@@ -34,14 +34,54 @@ Connector.find().then((data) => {
     console.log(data)
 }) // Finds all the data in the database
 
+
 Connector.find([{name: 'John'}]).then((data) => {
     console.log(data)
+    output: [{name: 'John'}, {name: 'John'}, {name: 'John'}]
 }) // Set the array of objects to find the data in the database with Specific Filter
+
 
 Connector.find([{name: 'John'}], 1).then((data) => {
     console.log(data)
+    output: [{name: 'John'}]
 }) // Set the array of objects to find the data in the database with Specific Filter and Limit
 
+
+Connector.findAndCount([{name: 'John'}]).then((data) => {
+    console.log(data)
+    output: {
+        count: 3,
+        data: [{name: 'John'}, {name: 'John'}, {name: 'John'}]
+    }
+}) // Set the array of objects to find the data in the database with Specific Filter and Count
+
+
+Connector.findAndCount([{name: 'John'}], 1).then((data) => {
+    console.log(data)
+    output: {
+        count: 1,
+        data: [{name: 'John'}]
+    }
+}) // Set the array of objects to find the data in the database with Specific Filter, Limit and Count
+
+```
+## You can also use the following filters for aggregation
+
+```javascript
+Connector.find([{age:{$lt:20}}, {age:{$gt:12}}]).then((data) => {
+    console.log(data)
+    output: [{age: 13}, {age: 14}, {age: 15}, {age: 16}, {age: 17}, {age: 18}, {age: 19}]
+}) // Set the array of objects to find the data in the database with less than and greater than filter
+
+Connector.find([{age:{$lte:20}}, {age:{$gte:12}}]).then((data) => {
+    console.log(data)
+    output: [{age: 12}, {age: 13}, {age: 14}, {age: 15}, {age: 16}, {age: 17}, {age: 18}, {age: 19}, {age: 20}]
+}) // Set the array of objects to find the data in the database with less than or equal to and greater than or equal to filter
+
+Connector.find([{age:{$lt:20}}, {age:{$gt:12}}], 1).then((data) => {
+    console.log(data)
+    output: [{age: 13}]
+}) // Set the array of objects to find the data in the database with less than and greater than filter and Limit
 
 
 ```
