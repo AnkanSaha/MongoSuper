@@ -4,8 +4,8 @@ import CreateModel from '../Model/CreateModel'; // import the Create function fr
 import CreateSchema from "../Schema/CreateSchema"; // import the Create function from the CreateSchema.ts file
 
 // CRUD methods
-import { Find } from "../../Js/python/Read"; // import the Find function from the Read.js file
-import { Create } from "../../Js/python/Create"; // import the Create function from the Create.js file
+import { Find } from "../../Js/Service/Read"; // import the Find function from the Read.js file
+import { Create } from "../../Js/Service/Create"; // import the Create function from the Create.js file
 // global types
 type str = string;
 type bool = boolean;
