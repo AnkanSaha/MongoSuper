@@ -16,15 +16,15 @@ import findValidator from "../Validator/FindValidator"; // Import the findValida
  * array of documents that match the Filter and are limited by the specified limit.
  */
 // Main Find Function
-export async function Find(Filter, model, limit) {
+export async function Find(Filter, model, limit, skip) {
     try {
         const validate = await findValidator(Filter); // Validate the Filter
         if (validate === false) return []; // If the Filter is not valid then return false.
         if (Filter.length === 0) {
-            const result = await model.find({}).limit(limit); // find the document
+            const result = await model.find({}).limit(limit).skip(skip); // find the document
             return result; // return the result
         } else if (Filter.length !== 0) {
-            const result = await model.find({ $and: Filter }).limit(limit); // find the document
+            const result = await model.find({ $and: Filter }).limit(limit).skip(skip); // find the document
             return result; // return the result
         }
     } catch (err) {

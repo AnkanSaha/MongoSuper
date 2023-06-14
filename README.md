@@ -74,7 +74,7 @@ Connector.findAndCount([{name: 'John'}], 1).then((data) => {
 
 ```
 
-## You can also use the following filters for aggregation
+## You can also use the following filters for aggregation as per as Mongoose
 
 ```javascript
 Connector.find([{ age: { $lt: 20 } }, { age: { $gt: 12 } }]).then((data) => {
@@ -109,6 +109,18 @@ Connector.find([{ age: { $lt: 20 } }, { age: { $gt: 12 } }], 1).then((data) => {
     console.log(data);
     output: [{ age: 13 }];
 }); // Set the array of objects to find the data in the database with less than and greater than filter and Limit
+
+Connector.findAndCount([{ age: { $lt: 20 } }, { age: { $gt: 12 } }], 1, 1).then(
+    (data) => {
+        console.log(data);
+        output: {
+            Skipped: 1,
+            Limit: 1,
+            count: 1,
+            Data: [{ age: 13 }];
+        }
+    }
+); // Set the array of objects to find the data in the database with less than and greater than filter, Limit with skip
 ```
 
 # Insert Methods
@@ -125,8 +137,68 @@ Connector.create({name: 'John'}).then((data) => {
     }
 }) // Creates a new document in the database
 
-```
+Connector.create({name:"Ankan Saha", Address:{ Street:"Address"}}).then((data) => {
+    console.log(data)
+    output: {
+        status:true,
+        message: "Successfully Created Data",
+        NewCount: 1,
+        NewData: [{name: 'Ankan Saha', Address:{ Street:"Address"}}]
+    }
+}) // Creates a new document in the database with nested objects
 
+**Note: Make sure you provide the Right Schema in the constructor if you want to use the create method** 
+
+```
+# Update Methods
+
+```javascript
+Connector.update([{name: 'John'}], {name: 'John Doe'}, false).then((data) => {
+    console.log(data)
+    output: {
+        status:true,
+        message: "Successfully Updated Data",
+        UpdatedCount: 1,
+        UpdatedData: [{name: 'John Doe'}]
+    }
+}) // Updates the data in the database with multi option set to false
+
+
+Connector.update([{name: 'John'}], {name: 'John Doe'}, true).then((data) => {
+    console.log(data)
+    output: {
+        status:true,
+        message: "Successfully Updated Data",
+        UpdatedCount: 5,
+        UpdatedData: [{name: 'John Doe'}, {name: 'John Doe'}, {name: 'John Doe'}, {name: 'John Doe'}, {name: 'John Doe'}]
+    }
+}) // Updates the data in the database with multi option set to true
+
+```
+# Delete Methods
+
+```javascript
+Connector.delete([{name: 'John'}], false).then((data) => {
+    console.log(data)
+    output: {
+        status:true,
+        message: "Successfully Deleted Data",
+        DeletedCount: 1,
+        DeletedData: [{name: 'John'}]
+    }
+}) // Deletes the data in the database with multi option set to false
+
+Connector.delete([{name: 'John'}], true).then((data) => {
+    console.log(data)
+    output: {
+        status:true,
+        message: "Successfully Deleted Data",
+        DeletedCount: 5,
+        NewData: [{name:"Ankan"}]
+    }
+}) // Deletes the data in the database with multi option set to true
+
+```
 # Important:
 
 -   If you Don't provide the URL, it will try to connect to the default URL: mongodb://localhost:27017 with log set to true.

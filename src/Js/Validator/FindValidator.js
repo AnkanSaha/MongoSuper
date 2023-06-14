@@ -1,5 +1,14 @@
 /* This file is used to find the validator file and import it. */
 
+/**
+ * The function checks if the input parameter is an array of objects and returns true if it is,
+ * otherwise it returns false and logs an error message.
+ * @param Filter - The parameter "Filter" is expected to be an array of objects. The function checks if
+ * the input is in the correct format and returns true if it is an array of objects, and false
+ * otherwise.
+ * @returns a boolean value. If the input parameter `Filter` is undefined, null, a string, a number, or
+ * a boolean, the function returns `false`. If `Filter` is an array, the function returns `true`.
+ */
 export default async function findValidator(Filter) {
     if(Filter === undefined){
         console.log("Filter is undefined");
@@ -28,4 +37,4 @@ export default async function findValidator(Filter) {
     else if(Array.isArray(Filter) === true){
         return true;
     }
-}
+} // Exporting the findValidator function
