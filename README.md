@@ -74,7 +74,7 @@ Connector.findAndCount([{name: 'John'}], 1).then((data) => {
 
 ```
 
-## You can also use the following filters for aggregation
+## You can also use the following filters for aggregation as per as Mongoose
 
 ```javascript
 Connector.find([{ age: { $lt: 20 } }, { age: { $gt: 12 } }]).then((data) => {
@@ -150,9 +150,31 @@ Connector.create({name:"Ankan Saha", Address:{ Street:"Address"}}).then((data) =
 **Note: Make sure you provide the Right Schema in the constructor if you want to use the create method** 
 
 ```
+# Update Methods
+
+```javascript
+Connector.update([{name: 'John'}], {name: 'John Doe'}, false).then((data) => {
+    console.log(data)
+    output: {
+        status:true,
+        message: "Successfully Updated Data",
+        UpdatedCount: 1,
+        UpdatedData: [{name: 'John Doe'}]
+    }
+}) // Updates the data in the database with multi option set to false
+
+
+Connector.update([{name: 'John'}], {name: 'John Doe'}, true).then((data) => {
+    console.log(data)
+    output: {
+        status:true,
+        message: "Successfully Updated Data",
+        UpdatedCount: 5,
+        UpdatedData: [{name: 'John Doe'}, {name: 'John Doe'}, {name: 'John Doe'}, {name: 'John Doe'}, {name: 'John Doe'}]
+    }
+}) // Updates the data in the database with multi option set to true
 
 ```
-
 # Important:
 
 -   If you Don't provide the URL, it will try to connect to the default URL: mongodb://localhost:27017 with log set to true.
