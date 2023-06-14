@@ -109,6 +109,18 @@ Connector.find([{ age: { $lt: 20 } }, { age: { $gt: 12 } }], 1).then((data) => {
     console.log(data);
     output: [{ age: 13 }];
 }); // Set the array of objects to find the data in the database with less than and greater than filter and Limit
+
+Connector.findAndCount([{ age: { $lt: 20 } }, { age: { $gt: 12 } }], 1, 1).then(
+    (data) => {
+        console.log(data);
+        output: {
+            Skipped: 1,
+            Limit: 1,
+            count: 1,
+            Data: [{ age: 13 }];
+        }
+    }
+); // Set the array of objects to find the data in the database with less than and greater than filter, Limit with skip
 ```
 
 # Insert Methods
@@ -124,6 +136,20 @@ Connector.create({name: 'John'}).then((data) => {
         NewData: [{name: 'John'}]
     }
 }) // Creates a new document in the database
+
+Connector.create({name:"Ankan Saha", Address:{ Street:"Address"}}).then((data) => {
+    console.log(data)
+    output: {
+        status:true,
+        message: "Successfully Created Data",
+        NewCount: 1,
+        NewData: [{name: 'Ankan Saha', Address:{ Street:"Address"}}]
+    }
+}) // Creates a new document in the database with nested objects
+
+**Note: Make sure you provide the Right Schema in the constructor if you want to use the create method** 
+
+```
 
 ```
 
