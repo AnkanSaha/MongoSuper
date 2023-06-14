@@ -7,6 +7,7 @@ import CreateSchema from "../Schema/CreateSchema"; // import the Create function
 import { Find } from "../../Js/Service/Read"; // import the Find function from the Read.js file
 import { Create } from "../../Js/Service/Create"; // import the Create function from the Create.js file
 import { Update } from "../../Js/Service/Update"; // import the Update function from the Update.js file
+import { Delete } from "../../Js/Service/Delete"; // import the Delete function from the Delete.js file
 
 // global types
 type str = string;
@@ -245,9 +246,14 @@ it calls the `listen()` method to listen for events related to the database conn
     } // end of create method
 
     // method to update a document in the database
+
+/* The above code is a TypeScript function that updates documents in a database. It takes in three
+parameters: Filter (an array of objects used to filter the documents to be updated), Data (an object
+containing the updated data), and MultiUpdate (a boolean flag indicating whether to update multiple
+documents or just one). */
     public async update(Filter:globe[]=[], Data:globe, MultiUpdate:bool = false) : Promise<globe>{
         try{
-            return await Update(Filter, Data, this.models, MultiUpdate,this.find);
+            return await Update(Filter, Data, this.models, MultiUpdate);
         }
         catch{
             console.log("Error while updating the document");
@@ -259,4 +265,33 @@ it calls the `listen()` method to listen for events related to the database conn
             };
         }
     }
+
+/**
+ * This is a TypeScript function that deletes documents from a database based on specified filters and
+ * returns a promise.
+ * @param {globe[]} Filter - An optional array of objects that specifies the criteria for selecting
+ * documents to delete. If no filter is provided, all documents in the collection will be deleted.
+ * @param {bool} [MultiDelete=false] - MultiDelete is a boolean parameter that determines whether to
+ * delete multiple documents that match the given filter or just the first document that matches the
+ * filter. If MultiDelete is set to true, all documents that match the filter will be deleted. If it is
+ * set to false, only the first document that matches the
+ * @returns The `delete` method is returning a Promise that resolves to an object of type `globe`. The
+ * object contains properties such as `status`, `message`, `DeletedCount`, and `DeletedData`. If the
+ * deletion is successful, `status` will be `true`, `DeletedCount` will indicate the number of
+ * documents deleted, and `DeletedData` will contain the deleted documents. If the
+ */
+    public async delete(Filter:globe[]=[], MultiDelete:bool = false) : Promise<globe>{
+        try{
+            return await Delete(Filter, this.models, MultiDelete);
+        }
+        catch{
+            console.log("Error while deleting the document");
+            return {
+                status:false,
+                message:"Failed to Delete Data",
+                DeletedCount: 0,
+                DeletedData: []
+            };
+        }
+    } // end of delete method
 } // end of alwaysRun class

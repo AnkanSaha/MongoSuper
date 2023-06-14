@@ -175,6 +175,30 @@ Connector.update([{name: 'John'}], {name: 'John Doe'}, true).then((data) => {
 }) // Updates the data in the database with multi option set to true
 
 ```
+# Delete Methods
+
+```javascript
+Connector.delete([{name: 'John'}], false).then((data) => {
+    console.log(data)
+    output: {
+        status:true,
+        message: "Successfully Deleted Data",
+        DeletedCount: 1,
+        DeletedData: [{name: 'John'}]
+    }
+}) // Deletes the data in the database with multi option set to false
+
+Connector.delete([{name: 'John'}], true).then((data) => {
+    console.log(data)
+    output: {
+        status:true,
+        message: "Successfully Deleted Data",
+        DeletedCount: 5,
+        NewData: [{name:"Ankan"}]
+    }
+}) // Deletes the data in the database with multi option set to true
+
+```
 # Important:
 
 -   If you Don't provide the URL, it will try to connect to the default URL: mongodb://localhost:27017 with log set to true.
