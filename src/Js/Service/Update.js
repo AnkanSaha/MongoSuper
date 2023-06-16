@@ -54,7 +54,7 @@ export async function Update(Filter, data, model, MultiUpdate) {
                         return {
                             status: true, // Returning the Status
                             message: "Data Updated Successfully", // Returning the Message
-                            UpdatedCount: result.modifiedCount, // Returning the Updated Count
+                            UpdatedCount: 1, // Returning the Updated Count
                             UpdatedData: UpdatedData[0] // Returning the Updated Data
                         };
                     }
@@ -78,11 +78,12 @@ export async function Update(Filter, data, model, MultiUpdate) {
                             UpdatedData: undefined
                         };
                     } else {
+                        const UpdatedData = await model.find({ $and: Filter });
                         return {
                             status: true,
                             message: "Data Updated Successfully",
-                            UpdatedCount: result.modifiedCount,
-                            UpdatedData: await model.find({ $and: Filter })
+                            UpdatedCount:UpdatedData.length,
+                            UpdatedData: UpdatedData
                         };
                     }
                 }

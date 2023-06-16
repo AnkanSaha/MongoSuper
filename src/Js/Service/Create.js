@@ -16,7 +16,6 @@
 export async function Create(data, model) {
     try {
         const result = await model(data).save(); // Create the document and save it to the database.
-        console.log(result);
         if (!result) {
             return {
                 status: false,
