@@ -35,6 +35,7 @@ export default async function findValidator(Filter) {
         return false;
     }
     else if(Array.isArray(Filter) === true){
+        console.log("Filter Validated");
         return true;
     }
 } // Exporting the findValidator function

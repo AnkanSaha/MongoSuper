@@ -11,13 +11,14 @@ type globe = any;
  * @returns The function `CreateSchema` is returning either an instance of the `Schema` class created
  * with the `Data` parameter, or `undefined` if an error occurs during the creation of the schema.
  */
-export default function CreateSchema(Data: globe): undefined | globe {
+export function CreateSchema(Data: globe): undefined | globe {
     try {
-        if (Data === undefined) {
-            console.log("Schema is undefined");
-            return;
-        } else {
-            return new Schema(Data);
+        switch (Data) {
+            case undefined:
+                console.log("Schema is undefined");
+                return;
+            default:
+                return new Schema(Data);
         }
     } catch (err) {
         console.log(err);
