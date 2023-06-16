@@ -19,13 +19,24 @@ import findValidator from "../Validator/FindValidator"; // Import the findValida
 export async function Find(Filter, model, limit, skip) {
     try {
         const validate = await findValidator(Filter); // Validate the Filter
-        if (validate === false) return []; // If the Filter is not valid then return false.
-        if (Filter.length === 0) {
-            const result = await model.find({}).limit(limit).skip(skip); // find the document
-            return result; // return the result
-        } else if (Filter.length !== 0) {
-            const result = await model.find({ $and: Filter }).limit(limit).skip(skip); // find the document
-            return result; // return the result
+        switch (validate) {
+            case false:
+                return [];
+            case true:
+                switch (Filter.length) {
+                    case 0:
+                        const result = await model
+                            .find({})
+                            .limit(limit)
+                            .skip(skip); // find the document
+                        return result; // return the result
+                    default:
+                        const MultiResult = await model
+                            .find({ $and: Filter })
+                            .limit(limit)
+                            .skip(skip); // find the document
+                        return MultiResult; // return the result
+                }
         }
     } catch (err) {
         console.log(err);

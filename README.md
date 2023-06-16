@@ -27,9 +27,8 @@ const Connector = new mongoland.Mongo({
 ## Connection Methods
 
 ```javascript
-Connector.SingleConnect(); // Connects to MongoDB once and you can disconnect using Connector.disconnect()
-Connector.alwaysConnect(); // Connects to MongoDB and automatically reconnects if disconnected & you can't disconnect
-Connector.disconnect(); // Disconnects from MongoDB if connected whenever you want (Only works with SingleConnect())
+Connector.Connect(); // Connects to MongoDB once and you can disconnect using Connector.disconnect()
+Connector.disconnect(); // Disconnects from MongoDB if connected whenever you want (Only works when you pass NeverDisconnect as false in the constructor)
 ```
 
 ## Find Methods

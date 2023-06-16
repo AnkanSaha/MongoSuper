@@ -16,16 +16,19 @@ type str = string;
  * @returns If `CollectionName` is `undefined`, then `undefined` is being returned. Otherwise, a model
  * is being returned based on the `DataSchema` and `CollectionName`.
  */
-export default function CreateModel(DataSchema: globe, CollectionName?: str) : undefined | globe {
-    if (CollectionName === undefined) {
-        return undefined;
-    } else {
-        try{
-            return model(CollectionName, DataSchema);
-        }
-        catch(err){
-            console.log(err);
+export function CreateModel(
+    DataSchema: globe,
+    CollectionName?: str
+): undefined | globe {
+    switch (CollectionName) {
+        case undefined:
             return undefined;
-        }
+        default:
+            try {
+                return model(CollectionName, DataSchema);
+            } catch (err) {
+                console.log(err);
+                return undefined;
+            }
     }
 } // end of function

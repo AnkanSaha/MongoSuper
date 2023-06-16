@@ -16,22 +16,35 @@
 export async function Create(data, model) {
     try {
         const result = await model(data).save(); // Create the document and save it to the database.
-        console.log(result);
-        if (!result) {
-            return {
-                status: false,
-                message: "Failed to Create Data",
-                data: null
-            };
-        } else if (result) {
-            return {
-                status: true,
-                message: "Successfully Created Data",
-                NewCount: [result].length,
-                NewData: [result]
-            };
-        }
+        switch (result) {
+            case result:
+                return {
+                    status: true,
+                    message: "Successfully Created Data",
+                    NewCount: [result].length,
+                    NewData: [result]
+                };
+            case null:
+                return {
+                    status: false,
+                    message: "Failed to Create Data",
+                    NewCount: 0,
+                    NewData: []
+                };
+            default:
+                return {
+                    status: false,
+                    message: "Failed to Create Data",
+                    NewCount: [result].length,
+                    NewData: [result]
+                };
+        } // Switch Statement
     } catch (err) {
-        return console.log(err); // return the error
+        return {
+            status: false,
+            message: "Internal Package Error: Failed to Create Data",
+            NewCount: [result].length,
+            NewData: [result]
+        };
     }
 } // Main Create Function
