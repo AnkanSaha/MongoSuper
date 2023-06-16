@@ -23,7 +23,7 @@ export class Mongo {
     private MongoURL: str; // string value to store the URL of the MongoDB database to connect to
     private ConnectionState: str; // string value to check if the connection is to cloud or local
     private NeverDisconnect: bool; // boolean value to check if the connection is to cloud or local
-    private Schema: globe; // mongoose schema type
+    private Schema?: globe; // mongoose schema type
     private models: globe; // mongoose model type
     private CollectionName?: str; // string value to store the name of the collection
     private connection: typeof connection; // mongoose connection type
@@ -42,8 +42,8 @@ export class Mongo {
     constructor(Details: {
         MongoURL: str; // default value is 'mongodb://localhost:27017/test'
         NeverDisconnect: bool; // default value is false
-        Schema: globe;
-        CollectionName: str;
+        Schema?: globe;
+        CollectionName?: str;
     }) {
         this.MongoURL =
             Details === undefined || Details.MongoURL === undefined
@@ -55,11 +55,11 @@ export class Mongo {
                 : Details.NeverDisconnect; // assign the NeverDisconnect property
         this.Schema =
             Details === undefined || Details.Schema === undefined
-                ? undefined
+                ? {}
                 : Details.Schema; // assign the Schema property
         this.CollectionName =
             Details === undefined || Details.CollectionName === undefined
-                ? undefined
+                ? "test"
                 : Details.CollectionName; // assign the Collection property
         this.ConnectionState = "Local"; // assign the ConnectionState property
         this.connection = connection; // assign the connection property
