@@ -113,19 +113,25 @@ It then checks if the connection is local or on a server using a private functio
 If the `NeverDisconnect` property of the class is set to true, it listens for events related to the
 database connection. If there is an error while connecting to the database, it logs an error message
 to the console. */
-    public async Connect(): Promise<void> {
+    public async Connect(): Promise<globe> {
         try {
             await this.InstantConnect(this.MongoURL); // connect to the database
             await this.LogGen(); // Checking if The Connection String is Local or Server in private function
-            console.log(
-                `MongoDB connected successfully with ${this.ConnectionState} Server`
-            );
 
             if (this.NeverDisconnect === true) {
                 this.listen(); // listen for events related to the database connection
             } // check if this is a never disconnect connection
+
+            return {
+                status: true,
+                message: `MongoDB connected successfully with ${this.ConnectionState} Server`,
+            };
+
         } catch {
-            console.log("Error while connecting to the database");
+            return {
+                status: false,
+                message: "Error: MongoDB connection failed",
+            };
         }
     } // end of SingleConnect method
 
@@ -135,22 +141,29 @@ database. It first checks if the `NeverDisconnect` property is set to `false`, a
 logs a message and returns without disconnecting. If it is set to `false`, it closes the connection
 to the database and logs a success message. If there is an error while disconnecting, it logs an
 error message. */
-    public async disconnect(): Promise<void> {
+    public async disconnect(): Promise<globe> {
         try {
             if (this.NeverDisconnect === false) {
                 console.log(
                     "This is not a never disconnect connection, to disconnect use set NeverDisconnect to false"
                 );
-                return;
+                return {
+                    status: false,
+                    message: "This is not a never disconnect connection, to disconnect use set NeverDisconnect to false",
+                };
             } // check if this is a never disconnect connection
             else {
                 this.connection.close(); // disconnect from the database
-                console.log(
-                    `MongoDB Disconnected successfully with ${this.ConnectionState} Server`
-                );
+               return {
+                    status: true,
+                    message: "MongoDB disconnected successfully",
+               };
             }
         } catch {
-            console.log("Error while disconnecting from the database");
+            return {
+                status: false,
+                message: "Error: MongoDB disconnection failed",
+            };
         }
     } // end of disconnect method
 
