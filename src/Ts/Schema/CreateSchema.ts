@@ -18,7 +18,7 @@ export function CreateSchema(Data: globe): undefined | globe {
                 console.log("Schema is undefined");
                 return;
             default:
-                return new Schema(Data);
+                return new Schema(Data, {immutable:true});
         }
     } catch (err) {
         console.log(err);
