@@ -42,34 +42,59 @@ Connector.find().then((data) => {
 }) // Finds all the data in the database
 
 
-Connector.find([{name: 'John'}]).then((data) => {
+Connector.find('AND', [{name: 'John'}]).then((data) => {
     console.log(data)
     output: [{name: 'John'}, {name: 'John'}, {name: 'John'}]
-}) // Set the array of objects to find the data in the database with Specific Filter
+}) // Set the array of objects to find the data in the database with Specific Filter with AND operator
+
+Connector.find('OR', [{name: 'John'}]).then((data) => {
+    console.log(data)
+    output: [{name: 'John'}, {name: 'John'}, {name: 'John'}]
+}) // Set the array of objects to find the data in the database with Specific Filter with OR operator
 
 
-Connector.find([{name: 'John'}], 1).then((data) => {
+Connector.find('AND',[{name: 'John'}], 1).then((data) => {
     console.log(data)
     output: [{name: 'John'}]
-}) // Set the array of objects to find the data in the database with Specific Filter and Limit
+}) // Set the array of objects to find the data in the database with Specific Filter and Limit with AND operator
 
+Connector.find('OR',[{name: 'John'}], 1).then((data) => {
+    console.log(data)
+    output: [{name: 'John'}]
+}) // Set the array of objects to find the data in the database with Specific Filter and Limit with OR operator
 
-Connector.findAndCount([{name: 'John'}]).then((data) => {
+Connector.findAndCount('AND', [{name: 'John'}]).then((data) => {
     console.log(data)
     output: {
         count: 3,
         data: [{name: 'John'}, {name: 'John'}, {name: 'John'}]
     }
-}) // Set the array of objects to find the data in the database with Specific Filter and Count
+}) // Set the array of objects to find the data in the database with Specific Filter and Count with AND operator
+
+Connector.findAndCount('OR', [{name: 'John'}]).then((data) => {
+    console.log(data)
+    output: {
+        count: 3,
+        data: [{name: 'John'}, {name: 'John'}, {name: 'John'}]
+    }
+}) // Set the array of objects to find the data in the database with Specific Filter and Count with OR operator
 
 
-Connector.findAndCount([{name: 'John'}], 1).then((data) => {
+Connector.findAndCount('AND', [{name: 'John'}], 1).then((data) => {
     console.log(data)
     output: {
         count: 1,
         data: [{name: 'John'}]
     }
-}) // Set the array of objects to find the data in the database with Specific Filter, Limit and Count
+}) // Set the array of objects to find the data in the database with Specific Filter, Count and Limit with AND operator
+
+Connector.findAndCount('OR', [{name: 'John'}], 1).then((data) => {
+    console.log(data)
+    output: {
+        count: 1,
+        data: [{name: 'John'}]
+    }
+}) // Set the array of objects to find the data in the database with Specific Filter, Count and Limit with OR operator
 
 ```
 

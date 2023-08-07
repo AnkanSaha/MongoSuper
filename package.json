@@ -1,6 +1,6 @@
 {
   "name": "mongoland",
-  "version": "4.2.5",
+  "version": "4.3.5",
   "description": "mongoland is a superset of mongoose. It is a wrapper around mongoose. It manage your mongoose connection and keep it alive always. It also provide you some extra features like CRUD operations, etc.",
   "main": "./lib/Ts/Connection/Connection.js",
   "types": "./lib/Ts/Connection/Connection.d.ts",
