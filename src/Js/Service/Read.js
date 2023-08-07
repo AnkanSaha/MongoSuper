@@ -16,7 +16,7 @@ import findValidator from "../Validator/FindValidator"; // Import the findValida
  * array of documents that match the Filter and are limited by the specified limit.
  */
 // Main Find Function
-export async function Find(Filter, model, limit, skip) {
+export async function Find(type, Filter, model, limit, skip) {
     try {
         const validate = await findValidator(Filter); // Validate the Filter
         switch (validate) {
@@ -31,11 +31,20 @@ export async function Find(Filter, model, limit, skip) {
                             .skip(skip); // find the document
                         return result; // return the result
                     default:
-                        const MultiResult = await model
-                            .find({ $and: Filter })
-                            .limit(limit)
-                            .skip(skip); // find the document
-                        return MultiResult; // return the result
+                        if(type === "OR"){
+                            const orResult = await model
+                                .find({ $or: Filter })
+                                .limit(limit)
+                                .skip(skip); // find the document
+                            return orResult; // return the result
+                        }
+                        else if(type === "AND"){
+                            const andResult = await model
+                                .find({ $and: Filter })
+                                .limit(limit)
+                                .skip(skip); // find the document
+                            return andResult; // return the result
+                        }
                 }
         }
     } catch (err) {

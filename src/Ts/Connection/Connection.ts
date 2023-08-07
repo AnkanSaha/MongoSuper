@@ -168,10 +168,8 @@ error message. */
     } // end of disconnect method
 
     // method to find a document in the database
-/* The above code is defining an asynchronous method called `find` that takes in three parameters:
-`Filter` (an array of objects), `limit` (an integer), and `skip` (an integer). The method returns a
-Promise that resolves to an object of type `globe`. */
     public async find(
+        type : str = "AND",
         Filter: globe[] = [],
         limit: int = 0,
         skip: int = 0
@@ -180,9 +178,9 @@ Promise that resolves to an object of type `globe`. */
             return {
                 skipped: skip,
                 limit,
-                count: Array.from(await ReadData(Filter, this.models, limit, skip))
+                count: Array.from(await ReadData(type, Filter, this.models, limit, skip))
                     .length, // find the document in the database
-                Data: await ReadData(Filter, this.models, limit, skip) // find the document in the database
+                Data: await ReadData(type, Filter, this.models, limit, skip) // find the document in the database
             };
         } catch {
             console.log("Error while finding the document");
@@ -198,6 +196,7 @@ number of documents skipped), `limit` (the maximum number of documents to return
 number of documents that match the filter), and `Data` (an array of documents that match the
 filter). */
     public async findAndCount(
+        type : str = "AND",
         Filter: globe[] = [],
         limit: int = 0,
         skip: int = 0
@@ -206,9 +205,9 @@ filter). */
             return {
                 skipped: skip,
                 limit,
-                count: Array.from(await ReadData(Filter, this.models, limit, skip))
+                count: Array.from(await ReadData(type, Filter, this.models, limit, skip))
                     .length, // find the document in the database
-                Data: await ReadData(Filter, this.models, limit, skip) // find the document in the database
+                Data: await ReadData(type, Filter, this.models, limit, skip) // find the document in the database
             };
         } catch {
             console.log("Error while finding the document");
