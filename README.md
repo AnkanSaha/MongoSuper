@@ -187,13 +187,13 @@ Connector.update([{name: 'John'}], {name: 'John Doe'}, false).then((data) => {
     }
 }) // Updates the data in the database with multi option set to false
 
-Connector.update([{name:"John"}], {$set:{"User.name":"John Doe"}}, false).then((data) => {
+Connector.update([{name:"John"}], {$set:{"User.name":"John", "User.Surname":"Doe"}}, false).then((data) => {
     console.log(data)
     output: {
         status:true,
         message: "Successfully Updated Data",
         UpdatedCount: 1,
-        UpdatedData: [{name: 'John Doe'}]
+        UpdatedData: [{name: 'John', Surname: 'Doe'}]
     }
 }) // Updates the data in the database with nested objects
 
