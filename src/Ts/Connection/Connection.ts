@@ -175,6 +175,7 @@ error message. */
         skip: int = 0
     ): Promise<globe> {
         try {
+            console.log('type :', type);
             return {
                 skipped: skip,
                 limit,
@@ -202,6 +203,7 @@ filter). */
         skip: int = 0
     ): Promise<globe> {
         try {
+
             return {
                 skipped: skip,
                 limit,
