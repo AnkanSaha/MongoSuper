@@ -1,13 +1,13 @@
 {
-  "name": "mongoland",
-  "version": "4.4.1",
-  "description": "mongoland is a superset of mongoose. It is a wrapper around mongoose. It manage your mongoose connection and keep it alive always. It also provide you some extra features like CRUD operations, etc.",
+  "name": "mongosuper",
+  "version": "4.4.3",
+  "description": "mongosuper is a superset of mongoose. It is a wrapper around mongoose. It manage your mongoose connection and keep it alive always. It also provide you some extra features like CRUD operations, etc.",
   "main": "./lib/Ts/Connection/Connection.js",
   "types": "./lib/Ts/Connection/Connection.d.ts",
   "scripts": {
-    "test": "npm run lint",
-    "build": "npm test && tsc",
-    "prepare": "npm run build",
+    "test": "yarn run lint",
+    "build": "tsc",
+    "prepare": "yarn run build",
     "lint": "tslint --project tsconfig.json --config tslint.json --fix"
   },
   "keywords": [
@@ -23,7 +23,7 @@
     "Mongoose-Connect-Connection-Keep-Alive",
     "Mongoose-Connect-Connection-Keep-Alive-Always",
     "Mongoose-Connect-Connection-Keep-Alive-Always-Alive",
-    "mongoland",
+    "mongosuper",
     "Crud",
     "CRUD"
   ],

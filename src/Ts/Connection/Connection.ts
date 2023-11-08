@@ -1,5 +1,11 @@
 import { connect, connection } from "mongoose"; // import the mongoose module
-import Methods, {ConnectDB, CreateData, ReadData, UpdateData, DeleteData} from '../../Config/Provider'; // Import All Function from Provider
+import Methods, {
+    ConnectDB,
+    CreateData,
+    ReadData,
+    UpdateData,
+    DeleteData
+} from "../../Config/Provider"; // Import All Function from Provider
 // global types
 type str = string;
 type bool = boolean;
@@ -10,8 +16,7 @@ type int = number;
 // handler that can connect to a local or cloud server and listen for
 // connection events. */
 export class Mongo {
-
-/* The above code is defining private properties and types for a `Mongo` class in TypeScript. These
+    /* The above code is defining private properties and types for a `Mongo` class in TypeScript. These
 properties include `MongoURL` to store the URL of the MongoDB database to connect to,
 `ConnectionState` to check if the connection is to cloud or local, `NeverDisconnect` to check if the
 connection is to cloud or local, `Schema` for mongoose schema type, `models` for mongoose model
@@ -20,6 +25,7 @@ type, and `InstantConnect` function to connect to the database. */
 
     /* These are private properties of the `Mongo` class in TypeScript. */
     private MongoURL: str; // string value to store the URL of the MongoDB database to connect to
+    private Database_Name: str; // string value to check if the connection is to cloud or local
     private ConnectionState: str; // string value to check if the connection is to cloud or local
     private NeverDisconnect: bool; // boolean value to check if the connection is to cloud or local
     private Schema?: globe; // mongoose schema type
@@ -27,6 +33,7 @@ type, and `InstantConnect` function to connect to the database. */
     private CollectionName?: str; // string value to store the name of the collection
     private connection: typeof connection; // mongoose connection type
     private InstantConnect: (MongoURL: str) => Promise<void>; // function to connect to the database
+    private isTimeStamps: bool = false; // boolean value to check if the connection is to cloud or local
 
     /**
      * This is a constructor function that initializes properties for a MongoDB connection, including
@@ -39,15 +46,21 @@ type, and `InstantConnect` function to connect to the database. */
      * If set to false, no logging will occur.
      */
     constructor(Details: {
-        MongoURL: str; // default value is 'mongodb://localhost:27017/test'
+        MongoURL: str; // default value is 'mongodb://localhost:27017/
+        Database_Name?: str; // default value is 'test'
         NeverDisconnect: bool; // default value is false
-        Schema?: globe;
-        CollectionName?: str;
+        Schema?: globe; // default value is {}
+        CollectionName?: str; // default value is 'test'
+        isTimeStamps?: bool; // default value is false
     }) {
+        this.Database_Name =
+            Details === undefined || Details.Database_Name === undefined
+                ? "test"
+                : Details.Database_Name; // assign the Database_Name property
         this.MongoURL =
             Details === undefined || Details.MongoURL === undefined
-                ? "mongodb://localhost:27017/test"
-                : Details.MongoURL; // assign the MongoURL property
+                ? `mongodb://localhost:27017/${this.Database_Name}`
+                : `${Details.MongoURL}${this.Database_Name}`; // assign the MongoURL property
         this.NeverDisconnect =
             Details === undefined || Details.NeverDisconnect === undefined
                 ? false
@@ -64,12 +77,12 @@ type, and `InstantConnect` function to connect to the database. */
         this.connection = connection; // assign the connection property
         this.InstantConnect = ConnectDB; // assign the Connect property
         this.models = Methods.CreateModel(
-            Methods.CreateSchema(this.Schema),
+            Methods.CreateSchema(this.Schema, this.isTimeStamps),
             this.CollectionName
         ); // assign the models property
     } // end of constructor
 
-/* The above code is a TypeScript method called `LogGen` which is marked as `private` and `async`. It
+    /* The above code is a TypeScript method called `LogGen` which is marked as `private` and `async`. It
 returns a `Promise` of type `globe`. */
     private async LogGen(): Promise<globe> {
         if (this.MongoURL.includes("mongodb+srv")) {
@@ -79,7 +92,7 @@ returns a `Promise` of type `globe`. */
         } // check if the connection is to cloud or local
     }
 
-/* The above code is defining a method called `listen` which listens for events related to the MongoDB
+    /* The above code is defining a method called `listen` which listens for events related to the MongoDB
 connection. It listens for the `connected`, `error`, and `disconnected` events. */
     private listen() {
         this.connection.on("connected", async (): Promise<void> => {
@@ -107,7 +120,7 @@ connection. It listens for the `connected`, `error`, and `disconnected` events. 
         });
     } // end of listen method
 
-/* The above code is defining a method called `Connect` which is an asynchronous function that connects
+    /* The above code is defining a method called `Connect` which is an asynchronous function that connects
 to a MongoDB database using a connection string specified in the `MongoURL` property of the class.
 It then checks if the connection is local or on a server using a private function called `LogGen`.
 If the `NeverDisconnect` property of the class is set to true, it listens for events related to the
@@ -124,19 +137,18 @@ to the console. */
 
             return {
                 status: true,
-                message: `MongoDB connected successfully with ${this.ConnectionState} Server`,
+                message: `MongoDB connected successfully with ${this.ConnectionState} Server`
             };
-
         } catch {
             return {
                 status: false,
-                message: "Error: MongoDB connection failed",
+                message: "Error: MongoDB connection failed"
             };
         }
     } // end of SingleConnect method
 
     // method to disconnect from the database
-/* The above code is defining an `async` method called `disconnect` that disconnects from a MongoDB
+    /* The above code is defining an `async` method called `disconnect` that disconnects from a MongoDB
 database. It first checks if the `NeverDisconnect` property is set to `false`, and if it is not, it
 logs a message and returns without disconnecting. If it is set to `false`, it closes the connection
 to the database and logs a success message. If there is an error while disconnecting, it logs an
@@ -149,27 +161,28 @@ error message. */
                 );
                 return {
                     status: false,
-                    message: "This is not a never disconnect connection, to disconnect use set NeverDisconnect to false",
+                    message:
+                        "This is not a never disconnect connection, to disconnect use set NeverDisconnect to false"
                 };
             } // check if this is a never disconnect connection
             else {
                 this.connection.close(); // disconnect from the database
-               return {
+                return {
                     status: true,
-                    message: "MongoDB disconnected successfully",
-               };
+                    message: "MongoDB disconnected successfully"
+                };
             }
         } catch {
             return {
                 status: false,
-                message: "Error: MongoDB disconnection failed",
+                message: "Error: MongoDB disconnection failed"
             };
         }
     } // end of disconnect method
 
     // method to find a document in the database
     public async find(
-        type : str = "AND",
+        type: str = "AND",
         Filter: globe[] = [],
         limit: int = 0,
         skip: int = 0
@@ -178,8 +191,9 @@ error message. */
             return {
                 skipped: skip,
                 limit,
-                count: Array.from(await ReadData(type, Filter, this.models, limit, skip))
-                    .length, // find the document in the database
+                count: Array.from(
+                    await ReadData(type, Filter, this.models, limit, skip)
+                ).length, // find the document in the database
                 Data: await ReadData(type, Filter, this.models, limit, skip) // find the document in the database
             };
         } catch {
@@ -189,25 +203,25 @@ error message. */
     } // end of find method
 
     // method to findAndCount a document in the database
-/* The above code is defining an asynchronous function called `findAndCount` that takes in three
+    /* The above code is defining an asynchronous function called `findAndCount` that takes in three
 parameters: `Filter` (an array of objects), `limit` (an integer), and `skip` (an integer). The
 function returns a Promise that resolves to an object with the following properties: `skipped` (the
 number of documents skipped), `limit` (the maximum number of documents to return), `count` (the
 number of documents that match the filter), and `Data` (an array of documents that match the
 filter). */
     public async findAndCount(
-        type : str = "AND",
+        type: str = "AND",
         Filter: globe[] = [],
         limit: int = 0,
         skip: int = 0
     ): Promise<globe> {
         try {
-
             return {
                 skipped: skip,
                 limit,
-                count: Array.from(await ReadData(type, Filter, this.models, limit, skip))
-                    .length, // find the document in the database
+                count: Array.from(
+                    await ReadData(type, Filter, this.models, limit, skip)
+                ).length, // find the document in the database
                 Data: await ReadData(type, Filter, this.models, limit, skip) // find the document in the database
             };
         } catch {
@@ -221,7 +235,7 @@ filter). */
 
     // method to create a document in the database
 
-/* The above code is a TypeScript method that creates a new document in a database using the `Create`
+    /* The above code is a TypeScript method that creates a new document in a database using the `Create`
 function and the `models` object. It takes in a parameter `Data` of type `globe` and returns a
 Promise that resolves to a `globe` object. If an error occurs during the creation process, it logs
 an error message to the console and returns a `globe` object with `NewCount` set to 0 and an empty
@@ -262,7 +276,7 @@ documents or just one). */
         }
     } // end of Update function
 
-/* The above code is defining an asynchronous method called "delete" that takes in two parameters:
+    /* The above code is defining an asynchronous method called "delete" that takes in two parameters:
 "Filter" which is an array of objects of type "globe" and "MultiDelete" which is a boolean. The
 method calls the "Delete" function with the "Filter", "this.models" and "MultiDelete" parameters and
 awaits the result. If the deletion is successful, the method returns the result. If there is an
