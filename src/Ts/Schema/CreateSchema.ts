@@ -1,6 +1,7 @@
 import { Schema } from "mongoose"; // Import mongoose types
 
 type globe = any;
+type bool = boolean;
 
 /**
  * This function creates a new schema object based on the provided data, and returns it or undefined if
@@ -11,14 +12,14 @@ type globe = any;
  * @returns The function `CreateSchema` is returning either an instance of the `Schema` class created
  * with the `Data` parameter, or `undefined` if an error occurs during the creation of the schema.
  */
-export function CreateSchema(Data: globe): undefined | globe {
+export function CreateSchema(Data: globe, isTimeStamps: bool): undefined | globe {
     try {
         switch (Data) {
             case undefined:
                 console.log("Schema is undefined");
                 return;
             default:
-                return new Schema(Data);
+                return new Schema(Data, {timestamps: isTimeStamps});
         }
     } catch (err) {
         console.log(err);

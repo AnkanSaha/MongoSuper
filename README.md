@@ -1,20 +1,20 @@
-# mongoland
+# MongoSuper
 
--   mongoland is an superset of mongoose which makes it easier to connect to MongoDB and disconnect from it. also it has CRUD methods which makes it easier to create, read, update and delete data from MongoDB.
+-   MongoSuper is an superset of mongoose which makes it easier to connect to MongoDB and disconnect from it. also it has CRUD methods which makes it easier to create, read, update and delete data from MongoDB.
 
 ## Installation
 
 ```bash
-npm install mongoland@latest
+npm install mongosuper@latest
 
 ```
 
 ## Usage
 
 ```javascript
-const mongoland = require("mongoland"); // Importing the package
+const MongoSuper = require("mongosuper"); // Importing the package
 
-const Connector = new mongoland.Mongo({
+const Connector = new MongoSuper.Mongo({
     MongoURL: "Provide the URL",
     NeverDisconnect: "Provide true/false",
     Schema: "Provide the Schema Object",
