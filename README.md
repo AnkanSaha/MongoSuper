@@ -15,10 +15,12 @@ npm install mongosuper@latest
 const MongoSuper = require("mongosuper"); // Importing the package
 
 const Connector = new MongoSuper.Mongo({
-    MongoURL: "Provide the URL",
+    MongoURL: "mongodb://localhost:27017/",
+    Database_Name: 'test',
     NeverDisconnect: "Provide true/false",
     Schema: "Provide the Schema Object",
-    CollectionName: "Provide the Collection Name"
+    CollectionName: "Provide the Collection Name",
+    isTimeStamps : true // set true if you want to create timestamp in record
 }); // Creating an instance of the Mongo class
 ```
 
