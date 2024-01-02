@@ -1,6 +1,6 @@
 {
-  "name": "mongosuper",
-  "version": "4.4.3",
+  "name": "@AnkanSaha/mongosuper",
+  "version": "4.4.4",
   "description": "mongosuper is a superset of mongoose. It is a wrapper around mongoose. It manage your mongoose connection and keep it alive always. It also provide you some extra features like CRUD operations, etc.",
   "main": "./lib/Ts/Connection/Connection.js",
   "types": "./lib/Ts/Connection/Connection.d.ts",
@@ -29,6 +29,10 @@
   ],
   "author": "Ankan Saha",
   "displayName": "mongoland",
+  "sponsor": {
+    "type": "git",
+    "url": "https://github.com/sponsors/AnkanSaha"
+  },
   "funding": {
     "type": "git",
     "url": "https://github.com/sponsors/AnkanSaha"
@@ -38,8 +42,15 @@
     "mongoose": "^7.4.1"
   },
   "readme": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/AnkanSaha/MongoSuper.git"
+  },
   "devDependencies": {
     "tslint": "^6.1.3",
     "typescript": "^5.1.6"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }
