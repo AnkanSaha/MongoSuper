@@ -1,5 +1,5 @@
 # MongoSuper Code of Conduct
-Welcome to MongoSuper, a React-based payment network built using MERN technology. Our platform enables users to load balance, withdraw funds, and make payments to their family members. In order to create a safe and inclusive environment, we have established this Code of Conduct for all participants.
+Welcome to MongoSuper, a React-based payment network built using MERN technology. Our platform enables users to load balance, withdraw funds, and make payments to their family members. In order to create a safe and inclusive environment, we have established this Code of Conduct for all participant.
  
  ## 1. Inclusively and Respect
  We value diversity and inclusion and expect all users to treat each other with respect. Discrimination, harassment, or any form of offensive behavior will not be tolerated.
