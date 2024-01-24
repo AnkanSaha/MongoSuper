@@ -16,11 +16,11 @@ const MongoSuper = require("mongosuper"); // Importing the package
 
 const Connector = new MongoSuper.Mongo({
     MongoURL: "mongodb://localhost:27017/",
-    Database_Name: 'test',
+    Database_Name: "test",
     NeverDisconnect: "Provide true/false",
     Schema: "Provide the Schema Object",
     CollectionName: "Provide the Collection Name",
-    isTimeStamps : true // set true if you want to create timestamp in record
+    isTimeStamps: true // set true if you want to create timestamp in record
 }); // Creating an instance of the Mongo class
 ```
 
@@ -173,9 +173,10 @@ Connector.create({name:"Ankan Saha", Address:{ Street:"Address"}}).then((data) =
     }
 }) // Creates a new document in the database with nested objects
 
-**Note: Make sure you provide the Right Schema in the constructor if you want to use the create method** 
+**Note: Make sure you provide the Right Schema in the constructor if you want to use the create method**
 
 ```
+
 # Update Methods
 
 ```javascript
@@ -211,6 +212,7 @@ Connector.update([{name: 'John'}], {name: 'John Doe'}, true).then((data) => {
 }) // Updates the data in the database with multi option set to true
 
 ```
+
 # Delete Methods
 
 ```javascript
@@ -235,6 +237,7 @@ Connector.delete([{name: 'John'}], true).then((data) => {
 }) // Deletes the data in the database with multi option set to true
 
 ```
+
 # Important:
 
 -   If you Don't provide the URL, it will try to connect to the default URL: mongodb://localhost:27017 with log set to true.

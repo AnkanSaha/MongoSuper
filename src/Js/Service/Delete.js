@@ -2,50 +2,48 @@
 import findValidator from "../Validator/FindValidator"; // import the find validator
 
 export async function Delete(Filter, Models, Multiple = false) {
-    try{
+    try {
         const Validator = await findValidator(Filter); // find the validator
-        if(Validator === true){
-            if(Multiple === false){
+        if (Validator === true) {
+            if (Multiple === false) {
                 const DeleteData = await Models.deleteOne(Filter[0]); // delete the data
-                if(DeleteData.deletedCount === 1){
+                if (DeleteData.deletedCount === 1) {
                     return {
                         status: true,
                         message: "Data Deleted Successfully",
                         DeletedCount: DeleteData.deletedCount,
-                        NewData: await Models.find({$and:Filter}) // find the data
+                        NewData: await Models.find({ $and: Filter }) // find the data
                     };
-                }
-                else{
+                } else {
                     return {
                         status: false,
-                        message: "Data not Deleted, Data not found, please check the filter",
+                        message:
+                            "Data not Deleted, Data not found, please check the filter",
                         DeletedCount: DeleteData.deletedCount,
                         DeletedData: undefined
                     };
                 }
-            }
-            else if(Multiple === true){
-                const DeleteData = await Models.deleteMany({$and:Filter}); // delete the data
-                if(DeleteData.deletedCount > 0){
+            } else if (Multiple === true) {
+                const DeleteData = await Models.deleteMany({ $and: Filter }); // delete the data
+                if (DeleteData.deletedCount > 0) {
                     return {
                         status: true,
                         message: "Data Deleted Successfully",
                         DeletedCount: DeleteData.deletedCount,
-                        NewData: await Models.find({$and:Filter}) // find the data
+                        NewData: await Models.find({ $and: Filter }) // find the data
                     };
-                }
-                else{
+                } else {
                     return {
                         status: false,
-                        message: "Data not Deleted, Data not found, please check the filter",
+                        message:
+                            "Data not Deleted, Data not found, please check the filter",
                         DeletedCount: DeleteData.deletedCount,
                         DeletedData: undefined
                     };
                 }
             }
         }
-    }
-    catch(error){
+    } catch (error) {
         console.log(error);
         return {
             status: false,
