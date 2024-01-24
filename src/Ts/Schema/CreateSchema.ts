@@ -12,14 +12,17 @@ type bool = boolean;
  * @returns The function `CreateSchema` is returning either an instance of the `Schema` class created
  * with the `Data` parameter, or `undefined` if an error occurs during the creation of the schema.
  */
-export function CreateSchema(Data: globe, isTimeStamps: bool): undefined | globe {
+export function CreateSchema(
+    Data: globe,
+    isTimeStamps: bool
+): undefined | globe {
     try {
         switch (Data) {
             case undefined:
                 console.log("Schema is undefined");
                 return;
             default:
-                return new Schema(Data, {timestamps: isTimeStamps});
+                return new Schema(Data, { timestamps: isTimeStamps });
         }
     } catch (err) {
         console.log(err);
