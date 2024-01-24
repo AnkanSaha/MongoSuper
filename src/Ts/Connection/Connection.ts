@@ -35,6 +35,7 @@ type, and `InstantConnect` function to connect to the database. */
     private InstantConnect: (MongoURL: str) => Promise<void>; // function to connect to the database
     private isTimeStamps: bool = false; // boolean value to check if the connection is to cloud or local
 
+    
     /**
      * This is a constructor function that initializes properties for a MongoDB connection, including
      * the URL and logging options.
