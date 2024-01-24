@@ -20,7 +20,7 @@ export const UpdateData = Update;
 export const DeleteData = Delete;
 
 // Export With Default Export
-export default {
+export default Object.freeze({
     CreateModel,
     CreateSchema
-};
+});
