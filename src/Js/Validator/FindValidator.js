@@ -9,7 +9,7 @@
  * @returns a boolean value. If the input parameter `Filter` is undefined, null, a string, a number, or
  * a boolean, the function returns `false`. If `Filter` is an array, the function returns `true`.
  */
-export default async function findValidator(Filter) {
+export default function findValidator(Filter) {
     if (Filter === undefined) {
         console.log("Filter is undefined");
         return false;
