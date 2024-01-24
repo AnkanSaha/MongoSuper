@@ -31,14 +31,13 @@ export async function Find(type, Filter, model, limit, skip) {
                             .skip(skip); // find the document
                         return result; // return the result
                     default:
-                        if(type === "OR"){
+                        if (type === "OR") {
                             const orResult = await model
                                 .find({ $or: Filter })
                                 .limit(limit)
                                 .skip(skip); // find the document
                             return orResult; // return the result
-                        }
-                        else if(type === "AND"){
+                        } else if (type === "AND") {
                             const andResult = await model
                                 .find({ $and: Filter })
                                 .limit(limit)

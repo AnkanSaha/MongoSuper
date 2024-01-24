@@ -82,8 +82,8 @@ export async function Update(Filter, data, model, MultiUpdate) {
                         return {
                             status: true,
                             message: "Data Updated Successfully",
-                            UpdatedCount:UpdatedData.length,
-                            UpdatedData: UpdatedData
+                            UpdatedCount: UpdatedData.length,
+                            UpdatedData
                         };
                     }
                 }
