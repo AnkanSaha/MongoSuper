@@ -70,6 +70,10 @@ type, and `InstantConnect` function to connect to the database. */
             Details === undefined || Details.Schema === undefined
                 ? {}
                 : Details.Schema; // assign the Schema property
+        this.isTimeStamps =
+            Details === undefined || Details.isTimeStamps === undefined
+                ? false
+                : Details.isTimeStamps; // assign the isTimeStamps property
         this.CollectionName =
             Details === undefined || Details.CollectionName === undefined
                 ? "test"
