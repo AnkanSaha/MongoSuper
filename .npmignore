@@ -6,3 +6,12 @@ tslint.json
 .prettierrc
 LEARN.md
 a.js
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+SECURITY.md
+docker-compose.yml
+.eslintrc.json
+.deepsource.toml
+.gitpod.yml
+.vscode
+.devcontainer
