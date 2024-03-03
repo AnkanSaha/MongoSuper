@@ -10,7 +10,7 @@ CODE_OF_CONDUCT.md
 CONTRIBUTING.md
 SECURITY.md
 docker-compose.yml
-.eslintrc.json
+.eslintrc.yml
 .deepsource.toml
 .gitpod.yml
 .vscode
