@@ -6,9 +6,9 @@
   "types": "./lib/Ts/Connection/Connection.d.ts",
   "scripts": {
     "test": "yarn run lint",
-    "build": "tsc",
+    "build": "yarn test && tsc",
     "prepare": "yarn run build",
-    "lint": "tslint --project tsconfig.json --config tslint.json --fix"
+    "lint": "eslint src/**/*.ts --fix"
   },
   "keywords": [
     "Mongoose",
@@ -47,8 +47,9 @@
     "url": "git://github.com/AnkanSaha/MongoSuper.git"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.19.1",
-    "@typescript-eslint/parser": "^6.19.1",
-    "eslint": "^8.56.0"
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.3.3"
   }
 }
