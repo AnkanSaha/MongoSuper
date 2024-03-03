@@ -1,5 +1,5 @@
 {
-  "name": "@AnkanSaha/mongosuper",
+  "name": "mongosuper",
   "version": "4.5.0",
   "description": "mongosuper is a superset of mongoose. It is a wrapper around mongoose. It manage your mongoose connection and keep it alive always. It also provide you some extra features like CRUD operations, etc.",
   "main": "./lib/Ts/Connection/Connection.js",
@@ -45,11 +45,6 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/AnkanSaha/MongoSuper.git"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
-    "access": "public",
-    "tag": "latest"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.19.1",
