@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/mongosuper.svg)](https://badge.fury.io/js/mongosuper)
 [![CodeQL](https://github.com/AnkanSaha/MongoSuper/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/AnkanSaha/MongoSuper/actions/workflows/github-code-scanning/codeql)
-[![Publish To NPM Package Registry](https://github.com/AnkanSaha/MongoSuper/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/AnkanSaha/MongoSuper/actions/workflows/npm-publish.yml)
+
 
 -   MongoSuper is an superset of mongoose which makes it easier to connect to MongoDB and disconnect from it. also it has CRUD methods which makes it easier to create, read, update and delete data from MongoDB.
 
