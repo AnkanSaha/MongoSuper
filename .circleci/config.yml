@@ -107,7 +107,7 @@ workflows:
           filters:
             branches:
               only: main
-     - Publish_To_NPM:
+      - Publish_To_NPM:
           name: Publish to NPM Registry
           requires:
             - Build & Test Package
