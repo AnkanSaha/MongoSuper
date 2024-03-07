@@ -31,10 +31,10 @@ jobs:
           command: npm install
       - run:
           name: Build Package
-          command: npm run build
+          command: yarn run build
       - run:
           name: Test Package
-          command: npm run test
+          command: yarn run test
 
   Publish_To_NPM:
     docker:
