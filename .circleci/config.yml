@@ -113,7 +113,7 @@ jobs:
           name: Change the Package name in Package.json
           command: |
             apt-get update && apt-get install -y sed
-            sed -i "2s/\"react-caches\"/\"@${GITLAB_USER_NAME}\/react-caches\"/" package.json
+            sed -i "2s/\"mongosuper\"/\"@${GITLAB_USER_NAME}\/mongosuper\"/" package.json
       - run:
           name: Publish to Gitlab Registry
           command: npm publish --registry https://gitlab.com/api/v4/projects/${GITLAB_PROJECT_ID}/packages/npm --access public
