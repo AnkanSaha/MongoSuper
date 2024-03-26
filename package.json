@@ -1,6 +1,6 @@
 {
   "name": "mongosuper",
-  "version": "4.5.6",
+  "version": "4.5.7",
   "description": "mongosuper is a superset of mongoose. It is a wrapper around mongoose. It manage your mongoose connection and keep it alive always. It also provide you some extra features like CRUD operations, etc.",
   "main": "./lib/Ts/Connection/Connection.js",
   "types": "./lib/Ts/Connection/Connection.d.ts",
