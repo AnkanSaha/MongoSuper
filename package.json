@@ -39,7 +39,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "mongoose": "7.5.0"
+    "mongoose": "7.6.10"
   },
   "readme": "README.md",
   "repository": {
