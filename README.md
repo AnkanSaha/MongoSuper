@@ -2,9 +2,8 @@
 
 [![npm version](https://badge.fury.io/js/mongosuper.svg)](https://badge.fury.io/js/mongosuper)
 [![CodeQL](https://github.com/AnkanSaha/MongoSuper/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/AnkanSaha/MongoSuper/actions/workflows/github-code-scanning/codeql)
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/AnkanSaha/MongoSuper/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/AnkanSaha/MongoSuper/tree/main)
 
--   MongoSuper is an superset of mongoose which makes it easier to connect to MongoDB and disconnect from it. also it has CRUD methods which makes it easier to create, read, update and delete data from MongoDB.
+- MongoSuper is an superset of mongoose which makes it easier to connect to MongoDB and disconnect from it. also it has CRUD methods which makes it easier to create, read, update and delete data from MongoDB.
 
 ## Installation
 
@@ -28,7 +27,7 @@ const Connector = new MongoSuper.Mongo({
 }); // Creating an instance of the Mongo class
 ```
 
--   Connector is an instance of the Mongo class
+- Connector is an instance of the Mongo class
 
 ## Connection Methods
 
@@ -244,4 +243,4 @@ Connector.delete([{name: 'John'}], true).then((data) => {
 
 # Important:
 
--   If you Don't provide the URL, it will try to connect to the default URL: mongodb://localhost:27017 with log set to true.
+- If you Don't provide the URL, it will try to connect to the default URL: mongodb://localhost:27017 with log set to true.
